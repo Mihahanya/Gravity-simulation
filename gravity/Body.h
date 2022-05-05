@@ -42,8 +42,8 @@ public:
 	}
 
 	void show_accels() {
-		easy_line(pos, pos+vel, *window, Color::Blue);
-		easy_line(pos, pos+accel, *window, Color::Red);
+		easy_line(pos, pos+vel, *window, Color(0, 0, 255, 127));
+		easy_line(pos, pos+accel, *window, Color(255, 0, 0, 127));
 	}
 
 private:

@@ -10,7 +10,8 @@ public:
 	vector<Body*> bds;
 
 	void update() {
-        dt = dtc.restart().asSeconds();	
+        //dt = dtc.restart().asSeconds();	
+        dt = 1./75.;	
 		for (auto b : bds) (*b).update(dt);
 		for (auto b : bds) (*b).calc_force();
 	}

@@ -1,8 +1,8 @@
 ﻿  main.cpp
 D:\PROJECTS\gravity\Gravity-simulation\gravity\Body.h(41,20): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-D:\PROJECTS\gravity\Gravity-simulation\gravity\main.cpp(46,26): warning C4305: инициализация: усечение из "double" в "float"
-D:\PROJECTS\gravity\Gravity-simulation\gravity\main.cpp(47,75): warning C4244: аргумент: преобразование "float" в "sf::Uint8", возможна потеря данных
-D:\PROJECTS\gravity\Gravity-simulation\gravity\main.cpp(47,59): warning C4244: аргумент: преобразование "float" в "sf::Uint8", возможна потеря данных
-D:\PROJECTS\gravity\Gravity-simulation\gravity\main.cpp(47,43): warning C4244: аргумент: преобразование "float" в "sf::Uint8", возможна потеря данных
-D:\PROJECTS\gravity\Gravity-simulation\gravity\main.cpp(49,28): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+D:\PROJECTS\gravity\Gravity-simulation\gravity\main.cpp(58,26): warning C4305: инициализация: усечение из "double" в "float"
+D:\PROJECTS\gravity\Gravity-simulation\gravity\main.cpp(59,75): warning C4244: аргумент: преобразование "float" в "sf::Uint8", возможна потеря данных
+D:\PROJECTS\gravity\Gravity-simulation\gravity\main.cpp(59,59): warning C4244: аргумент: преобразование "float" в "sf::Uint8", возможна потеря данных
+D:\PROJECTS\gravity\Gravity-simulation\gravity\main.cpp(59,43): warning C4244: аргумент: преобразование "float" в "sf::Uint8", возможна потеря данных
+D:\PROJECTS\gravity\Gravity-simulation\gravity\main.cpp(61,28): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
   gravity.vcxproj -> D:\PROJECTS\gravity\Gravity-simulation\x64\Debug\gravity.exe

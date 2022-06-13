@@ -27,9 +27,8 @@ public:
 			vec dir = norm(b->pos-pos);
 
 			double r = dist(b->pos, pos);
-			accel += dir * mass*b->mass / pow(r, 2);
+			accel += dir*b->mass / pow(r, 2);
 		}
-		accel /= mass;
 	}
 
 	void update(double dt) {

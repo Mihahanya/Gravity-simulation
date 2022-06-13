@@ -24,7 +24,7 @@ inline void easy_line(vec v1, vec v2, T &window, Color color=Color::Black) {
 }
 
 template <typename T>
-inline void easy_circle(vec pos, float r, T &window, Color color=Color::Black) {
+inline void easy_circle(vec pos, double r, T &window, Color color=Color::Black) {
     CircleShape c(r);
 	c.setFillColor(color);
 	c.setPosition(Vector2f(pos - vec(r, r)));

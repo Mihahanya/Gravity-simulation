@@ -10,8 +10,14 @@ public:
 	vector<Body*> bds;
 
 	void update() {
-        //dt = dtc.restart().asSeconds();	
-        dt = 1./75.;	
+        float delta_time = dtc.restart().asSeconds();	
+
+#if FPS > 0
+        dt = 1./FPS;
+#else
+		dt = delta_time;
+#endif
+		
 		for (auto b : bds) (*b).update(dt);
 		for (auto b : bds) (*b).calc_force();
 	}
@@ -42,5 +48,5 @@ public:
 
 private:
 	RenderWindow *window;
-    Clock dtc;
+    sf::Clock dtc;
 };

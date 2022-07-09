@@ -1,11 +1,12 @@
 #include "Scene.h"
 
-const int W = 900, H = 900;
-
 int main()
 {
-    RenderWindow window(VideoMode(W, H), "Simulation", Style::Close | Style::Titlebar);
-    window.setFramerateLimit(75);
+    RenderWindow window(sf::VideoMode(W, H), "Simulation", sf::Style::Close | sf::Style::Titlebar);
+
+#if FPS > 0
+    window.setFramerateLimit(FPS);
+#endif
 
     // Earth - 6e24, Moon - 7.3e22, Sun - 2e30
 
@@ -58,9 +59,11 @@ int main()
             float k = 0.2;
             Color col = Color((*b).color.r*k, (*b).color.g*k, (*b).color.b*k);
 
-		    easy_circle(pos, (*b).rad*0+2, rt, col);
+		    ff::easy_circle(pos, (*b).rad*0+2, rt, col);
         }
         window.draw(Sprite(rt.getTexture()));
+
+        cout << "FPS: " << round(1 / scene.dt * 10) / 10 << "    \r";
 
         scene.update();
         scene.draw();

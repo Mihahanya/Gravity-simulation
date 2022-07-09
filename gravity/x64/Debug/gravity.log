@@ -1,10 +1,10 @@
 ﻿  main.cpp
-D:\PROJECTS\gravity\Gravity-simulation\gravity\main.cpp(58,26): warning C4305: инициализация: усечение из "double" в "float"
-D:\PROJECTS\gravity\Gravity-simulation\gravity\main.cpp(59,75): warning C4244: аргумент: преобразование "float" в "sf::Uint8", возможна потеря данных
-D:\PROJECTS\gravity\Gravity-simulation\gravity\main.cpp(59,59): warning C4244: аргумент: преобразование "float" в "sf::Uint8", возможна потеря данных
-D:\PROJECTS\gravity\Gravity-simulation\gravity\main.cpp(59,43): warning C4244: аргумент: преобразование "float" в "sf::Uint8", возможна потеря данных
-D:\PROJECTS\gravity\Gravity-simulation\gravity\h.h(28,19): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-D:\PROJECTS\gravity\Gravity-simulation\gravity\Body.h(40): message : выполняется компиляция ссылки на экземпляр шаблон функции "void easy_circle<sf::RenderWindow>(vec,double,T &,sf::Color)"
+D:\PROJECTS\gravity\Gravity-simulation\gravity\main.cpp(59,26): warning C4305: инициализация: усечение из "double" в "float"
+D:\PROJECTS\gravity\Gravity-simulation\gravity\main.cpp(60,75): warning C4244: аргумент: преобразование "float" в "sf::Uint8", возможна потеря данных
+D:\PROJECTS\gravity\Gravity-simulation\gravity\main.cpp(60,59): warning C4244: аргумент: преобразование "float" в "sf::Uint8", возможна потеря данных
+D:\PROJECTS\gravity\Gravity-simulation\gravity\main.cpp(60,43): warning C4244: аргумент: преобразование "float" в "sf::Uint8", возможна потеря данных
+D:\PROJECTS\gravity\Gravity-simulation\gravity\fs.h(27,21): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+D:\PROJECTS\gravity\Gravity-simulation\gravity\Body.h(43): message : выполняется компиляция ссылки на экземпляр шаблон функции "void ff::easy_circle<sf::RenderWindow>(vec,double,T &,sf::Color)"
           with
           [
               T=sf::RenderWindow

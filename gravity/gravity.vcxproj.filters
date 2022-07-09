@@ -23,10 +23,16 @@
     <ClInclude Include="Body.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="h.h">
+    <ClInclude Include="config.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="Scene.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="include.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="fs.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

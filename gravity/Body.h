@@ -1,4 +1,7 @@
-#include "h.h"
+#pragma once
+
+#include "config.h"
+#include "fs.h"
 
 class Body
 {
@@ -24,9 +27,9 @@ public:
 		accel = vec(0, 0);
 
 		for (auto b : bds) {
-			vec dir = norm(b->pos-pos);
+			vec dir = vs::norm(b->pos-pos);
 
-			double r = dist(b->pos, pos);
+			double r = vs::dist(b->pos, pos);
 			accel += dir*b->mass / pow(r, 2);
 		}
 	}
@@ -37,12 +40,12 @@ public:
 	}
 	
 	void draw() {
-		easy_circle(pos, rad, *window, color);
+		ff::easy_circle(pos, rad, *window, color);
 	}
 
 	void show_accels() {
-		easy_line(pos, pos+vel, *window, Color(0, 0, 255, 127));
-		easy_line(pos, pos+accel, *window, Color(255, 0, 0, 127));
+		ff::easy_line(pos, pos+vel, *window, Color(0, 0, 255, 127));
+		ff::easy_line(pos, pos+accel, *window, Color(255, 0, 0, 127));
 	}
 
 private:

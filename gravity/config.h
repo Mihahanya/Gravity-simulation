@@ -2,9 +2,9 @@
 
 #include "include.h"
 
-typedef Vector2<double> vec;
+using vec = Vector2<double>;
 
-#define W 900
-#define H 900
+constexpr int W = 900;
+constexpr int H = 900;
 
-#define FPS 200
+#define FPS 100

@@ -2,7 +2,10 @@
 
 int main()
 {
-    RenderWindow window(sf::VideoMode(W, H), "Simulation", sf::Style::Close | sf::Style::Titlebar);
+    sf::ContextSettings settings;
+    settings.antialiasingLevel = 8;
+
+    RenderWindow window(sf::VideoMode(W, H), "Physical Simulation", sf::Style::Close | sf::Style::Titlebar, settings);
 
 #if FPS > 0
     window.setFramerateLimit(FPS);
@@ -11,29 +14,34 @@ int main()
     // Earth - 6e24, Moon - 7.3e22, Sun - 2e30
 
     Scene scene;
-    scene.set_window(window);
+    scene.set_window(&window);
 
-    vector<Body> bs;
-    for (int i=0; i<100; i++) {
-        Body p(1, vec(rand()%400-200, rand()%400-200));
-        p.set_pos(vec(rand()%500+200, rand()%500+200));
-        p.color = Color(rand()%256, rand()%256, rand()%256); p.rad = 4;
+    /*vector<HBody> bs;
+    for (int i=0; i<200; i++) {
+        HBody p(1e3);
+        p.set_vel(vec(rand() % 400 - 200, rand() % 400 - 200));
+        p.pos = vec(rand()%500+200, rand()%500+200);
+        p.color = Color(rand()%256, rand()%256, rand()%256); p.rad = 2;
 
         bs.push_back(p);
     }
-    //for (Body &b : bs) scene.join_body(b);
+    for (HBody &b : bs) scene.join_body(b);*/
 
-    Body p1(1, vec(0, 100));
-    p1.set_pos(vec(450-100, 450));
-    p1.color = Color::Cyan; //p1.rad = 4;
+    HBody p1(1);
+    //p1.set_vel(vec(0, 100));
+    p1.pos = vec(450-100, 450);
+    p1.color = Color::Cyan; 
 
-    Body p2(1, vec(100, -100)); 
-    p2.set_pos(vec(450+100, 450));
-    p2.color = Color::Green; //p2.rad = 4;
+    HBody p2(1);
+    p2.set_vel(vec(100, -100));
+    p2.pos = vec(450+100, 450);
+    p2.color = Color::Green; 
 
-    Body star(3e6, vec(10, -10)); 
-    star.set_pos(vec(450, 450));
-    star.color = Color::Yellow; //star.rad = 10;
+    HBody star(3e6); 
+    star.rad = 10;
+    //star.set_vel(vec(10, -10));
+    star.pos = vec(450, 450);
+    star.color = Color::Yellow;
 
     scene.join_body(star);
     scene.join_body(p1);
@@ -44,34 +52,26 @@ int main()
     RenderTexture rt;
     rt.create(W, H);
 
-    while (window.isOpen())
-    {       
-        sf::Event event;
-        while (window.pollEvent(event)) {
-            if (event.type == sf::Event::Closed) window.close();
-        }
+    main_loop([&]
+    {
+        //for (auto b : scene.planets) {
+        //    if (b->prev_pos == vs::zero) continue;
 
-        window.clear();
+        //    vec pos = vec(b->pos.x, H - b->pos.y);
+        //    vec p_pos = vec(b->prev_pos.x, H - b->prev_pos.y);
 
-        for (auto b : scene.bds) {
-            vec pos = vec((*b).get_pos().x, H-(*b).get_pos().y);
+        //    float k = 0.2;
+        //    Color col = Color(b->color.r * k, b->color.g * k, b->color.b * k);
 
-            float k = 0.2;
-            Color col = Color((*b).color.r*k, (*b).color.g*k, (*b).color.b*k);
-
-		    ff::easy_circle(pos, (*b).rad*0+2, rt, col);
-        }
-        window.draw(Sprite(rt.getTexture()));
-
-        cout << "FPS: " << round(1 / scene.dt * 10) / 10 << "    \r";
-
-        scene.update();
-        scene.draw();
+        //    //ff::easy_circle(pos, b->rad * 0 + 2, rt, col);
+        //    ff::easy_line(pos, p_pos, rt, col);
+        //}
+        //window.draw(Sprite(rt.getTexture()));
 
         if (Keyboard::isKeyPressed(Keyboard::Q)) scene.draw_accels();
-
-        window.display();
-    }
+        
+        cout << "FPS: " << round(1 / scene.delta_time * 10) / 10 << " \r";
+    }, scene);
 
     return 0;
 }

@@ -20,7 +20,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Body.h">
+    <ClInclude Include="HeavenlyBody.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="config.h">
@@ -33,6 +33,9 @@
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
     <ClInclude Include="fs.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Drawable.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

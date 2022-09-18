@@ -1,6 +1,7 @@
 #pragma once
 
-#include "HeavenlyBody.h"
+#include "Body.h"
+#include "Connection.h"
 
 class Scene;
 
@@ -9,7 +10,7 @@ void main_loop(auto, Scene&);
 class Scene : public Drawable
 {
 public:
-	vector<HBody*> planets{};
+	vector<Body*> planets{};
 	double delta_time = 0.01; // ~ 100 fps
 	bool pause = false;
 
@@ -18,13 +19,15 @@ public:
 	void draw() override;
 	void draw_accels();
 
-	void join_body(HBody &body);
+	void join_body(Body &body);
 	void set_window(RenderWindow* w) override;
 
 	friend void main_loop(auto, Scene&);
 
 private:
     sf::Clock delta_clock;
+
+	vector<Connection> conns{};
 };
 
 
@@ -51,17 +54,16 @@ void Scene::update() {
 #endif
 
 	for (auto& b : planets) b->update(dt);
-	for (auto& b : planets) b->calc_force();
-	for (auto& b : planets) b->do_collision();
+	for (auto& c : conns) c.calc_force();
+	for (auto& c : conns) c.do_collision();
 }
 
-void Scene::join_body(HBody& body) {
+void Scene::join_body(Body& body) {
 	body.set_window(window);
 	for (auto& b : planets) {
-		body.join_body(*b);
-		b->join_body(body);
+		Connection c(*b, body);
+		conns.push_back(c);
 	}
-
 	planets.push_back(&body);
 }
 
@@ -85,9 +87,10 @@ void main_loop(auto main, Scene& scene) {
 		scene.window->clear(scene.color);
 
 		scene.draw();
-		scene.update();
-
+		
 		main();
+		
+		scene.update();
 
 		scene.window->display();
 	}

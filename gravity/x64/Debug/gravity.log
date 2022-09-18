@@ -1,6 +1,6 @@
 ﻿  main.cpp
-D:\PROJECTS\gravity\Gravity-simulation\gravity\fs.h(46,21): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-D:\PROJECTS\gravity\Gravity-simulation\gravity\HeavenlyBody.h(86): message : выполняется компиляция ссылки на экземпляр шаблон функции "void ff::easy_circle<sf::RenderWindow>(const vec &,double,T &,sf::Color)"
+D:\PROJECTS\gravity\Gravity-simulation\gravity\fs.h(50,21): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+D:\PROJECTS\gravity\Gravity-simulation\gravity\Body.h(49): message : выполняется компиляция ссылки на экземпляр шаблон функции "void ff::easy_circle<sf::RenderWindow>(const vec &,double,T &,sf::Color)"
           with
           [
               T=sf::RenderWindow

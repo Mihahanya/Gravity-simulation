@@ -29,6 +29,10 @@ namespace vs
     inline vec rotate(const vec& v, double a) {
         return { v.x * cos(a) - v.y * sin(a), v.x * sin(a) + v.y * cos(a) };
     }
+
+    double angle(const vec& v) {
+        return atan(v.y / v.x);
+    }
 }
 
 

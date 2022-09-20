@@ -30,7 +30,7 @@ private:
 };
 
 
-Body::Body(double mass, double bounciness=0.5, Color color=Color::White) : 
+Body::Body(double mass, double bounciness=0.2, Color color=Color::White) : 
 	mass{mass}, bounciness{bounciness}, Drawable{color} {}
 
 void Body::set_vel(vec vel) { this->vel = vel; }

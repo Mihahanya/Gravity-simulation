@@ -26,11 +26,16 @@ namespace vs
         return rd - n * 2. * dot(n, rd);
     }
 
-    inline vec rotate(const vec& v, double a) {
-        return { v.x * cos(a) - v.y * sin(a), v.x * sin(a) + v.y * cos(a) };
+    inline vec rotate(const vec& v, double a, bool reverse=false) {
+        //return { v.x * cos(a) - v.y * sin(a), v.x * sin(a) + v.y * cos(a) };
+        return {
+            reverse ? (v.x * cos(a) + v.y * sin(a)) : (v.x * cos(a) - v.y * sin(a)),
+            reverse ? (v.y * cos(a) - v.x * sin(a)) : (v.y * cos(a) + v.x * sin(a))
+        };
     }
 
     double angle(const vec& v) {
+        if (v == vs::zero) return 0;
         return atan(v.y / v.x);
     }
 }

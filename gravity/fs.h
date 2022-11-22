@@ -34,7 +34,7 @@ namespace vs
         };
     }
 
-    double angle(const vec& v) {
+    inline double angle(const vec& v) {
         if (v == vs::zero) return 0;
         return atan(v.y / v.x);
     }

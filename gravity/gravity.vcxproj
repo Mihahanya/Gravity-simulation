@@ -151,11 +151,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Body.cpp" />
+    <ClCompile Include="Connection.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Scene.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Connection.h" />
     <ClInclude Include="Body.h" />
+    <ClInclude Include="Connection.h" />
     <ClInclude Include="Drawable.h" />
     <ClInclude Include="fs.h" />
     <ClInclude Include="config.h" />

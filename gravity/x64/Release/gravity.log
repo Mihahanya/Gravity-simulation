@@ -1,20 +1,7 @@
-﻿  Body.cpp
-D:\PROJECTS\gravity\Gravity-simulation\gravity\fs.h(55,21): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
-D:\PROJECTS\gravity\Gravity-simulation\gravity\Body.cpp(17): message : выполняется компиляция ссылки на экземпляр шаблон функции "void ff::easy_circle<sf::RenderWindow>(const vec &,double,T &,sf::Color)"
-          with
-          [
-              T=sf::RenderWindow
-          ]
-  Connection.cpp
-  Scene.cpp
-  main.cpp
-D:\PROJECTS\gravity\Gravity-simulation\gravity\main.cpp(78,5): warning C4305: инициализация: усечение из "double" в "float"
-D:\PROJECTS\gravity\Gravity-simulation\gravity\main.cpp(68,74): warning C4244: аргумент: преобразование "float" в "sf::Uint8", возможна потеря данных
-D:\PROJECTS\gravity\Gravity-simulation\gravity\main.cpp(68,58): warning C4244: аргумент: преобразование "float" в "sf::Uint8", возможна потеря данных
-D:\PROJECTS\gravity\Gravity-simulation\gravity\main.cpp(68,42): warning C4244: аргумент: преобразование "float" в "sf::Uint8", возможна потеря данных
+﻿  Connection.cpp
   Создание кода
-  0 of 229 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+  1 of 223 functions ( 0.4%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   Создание кода завершено
   gravity.vcxproj -> D:\PROJECTS\gravity\Gravity-simulation\x64\Release\gravity.exe

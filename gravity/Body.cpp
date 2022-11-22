@@ -1,9 +1,6 @@
 #include "Body.h"
 
 
-void Body::set_vel(vec vel) { this->vel = vel; }
-void Body::add_accel(vec f) { accel += f; }
-
 void Body::update(double dt) {
 	prev_pos = pos;
 	

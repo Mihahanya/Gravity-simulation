@@ -5,6 +5,9 @@
 #include <vector>
 
 using std::cout;
+using std::min;
+using std::pow;
+using std::max;
 using std::vector;
 
 using sf::Vector2;

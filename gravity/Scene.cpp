@@ -19,7 +19,7 @@ void Scene::update() {
 
 #if FPS > 0
 	double dt = 1. / FPS;
-#else
+#else 
 	double dt = delta_time;
 #endif
 

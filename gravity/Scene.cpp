@@ -1,4 +1,5 @@
 #include "Scene.h"
+#include <omp.h>
 
 
 void Scene::draw() {
@@ -23,9 +24,19 @@ void Scene::update() {
 	double dt = delta_time;
 #endif
 
-	for (auto& b : planets) b->update(dt);
-	for (auto& c : conns) c.calc_force();
-	for (auto& c : conns) c.do_collision();
+	//for (auto& b : planets) b->update(dt);
+	//for (auto& c : conns) c.calc_force();
+	//for (auto& c : conns) c.do_collision();
+
+	#pragma omp parallel for	
+	for (int i=0; i < planets.size(); i++) 
+			planets[i]->update(dt);
+	 
+	#pragma omp parallel for	
+	for (int i=0; i < conns.size(); i++) {
+		conns[i].calc_force();
+		conns[i].do_collision();
+	}
 }
 
 void Scene::join_body(Body& body) {

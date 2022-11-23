@@ -8,6 +8,7 @@ void Body::update(double dt) {
 	pos += vel * dt;
 
 	accel = vs::zero;
+	collised = false;
 }
 
 void Body::draw() {

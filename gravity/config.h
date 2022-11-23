@@ -6,7 +6,7 @@
 
 using vec = Vector2<double>;
 
-constexpr int W = 900;
-constexpr int H = 900;
+constexpr int W = 1280;
+constexpr int H = 720;
 
-#define FPS 80
+#define FPS 50

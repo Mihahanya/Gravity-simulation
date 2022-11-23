@@ -14,42 +14,43 @@ int main()
     // Earth - 6e24, Moon - 7.3e22, Sun - 2e30
 
     Scene scene;
+    scene.color = Color(20, 25, 30);
     scene.set_window(&window);
 
     vector<Body> bs;
-    for (int i=0; i<200; i++) {
-        Body p(5);
-        p.vel = vec(rand() % 1000 - 500, rand() % 1000 - 500)*0.0;
-        p.pos = vec(rand()%500+200, rand()%500+200);
-        p.color = Color(rand()%256, rand()%256, rand()%256); p.rad = 5;
+    for (int i=0; i<500; i++) {
+        Body p(rand()%100 + 3e3, 0.4);
+        p.vel = vec(rand() % 1000 - 500, rand() % 1000 - 500)*0.5;
+        p.pos = vec(rand()%W, rand()%H);
+        p.color = Color(rand()%256, rand()%256, rand()%256, 200); p.rad = 4;
 
         bs.push_back(p);
     }
     for (Body &b : bs) scene.join_body(b);
 
-    Body p1(2e3, 0.8);
-    p1.rad = 15;
-    p1.vel = vec(100, 0);
-    //p1.vel = vec(50, -80);
+    Body p1(1e4, 0.4);
+    p1.rad = 10;
+    //p1.vel = vec(100, 0);
+    p1.vel = vec(50, -80);
     p1.pos = vec(450-200, 460);
     p1.color = Color::Cyan; 
 
-    Body p2(2e3, 0.8);
-    p2.rad = 10;
+    Body p2(1e4, 0.4);
+    p2.rad = 7;
     //p2.vel = vec(-50, 0);
-    //p2.vel = vec(-70, -80);
+    p2.vel = vec(-70, -80);
     p2.pos = vec(450+200, 460);
     p2.color = Color::Green; 
 
-    Body star(3e6); 
-    star.rad = 20;
-    //star.vel = vec(10, -10);
-    star.pos = vec(450, 450);
+    Body star(6e6); 
+    star.rad = 25;
+    //star.vel = vec(50, 0);
+    star.pos = vec(W/2, H/2);
     star.color = Color::Yellow;
 
-    scene.join_body(p1);
-    scene.join_body(p2);
-    //scene.join_body(star);
+    //scene.join_body(p1);
+    //scene.join_body(p2);
+    scene.join_body(star);
 
     //
 
@@ -84,11 +85,10 @@ int main()
                 ff::easy_line(pos, p_pos, rt, b->color);
             }
         }
-        window.draw(Sprite(rt.getTexture()));
-
+        if (Keyboard::isKeyPressed(Keyboard::W)) window.draw(Sprite(rt.getTexture()));
         if (Keyboard::isKeyPressed(Keyboard::Q)) scene.draw_accels();
         
-        printf("FPS: %.1f, \tkinetic energy: %.3f \r", scene.delta_time, kinetic_energy);
+        printf("FPS: %.1f, \tkinetic energy: %.3f \r", 1./scene.delta_time, kinetic_energy);
 
     }, scene);
 

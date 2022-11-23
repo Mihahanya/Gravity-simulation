@@ -16,46 +16,56 @@ void Connection::calc_force() {
 }
 
 void Connection::do_collision() {
-	static const double v_max=300, x_max=3;
-
-	p1.collised = p2.collised = false;
+	//static const double v_max=300, x_max=3;
 
     if (vs::dist(p1.pos, p2.pos) < p1.rad + p2.rad) {
 		p1.collised = p2.collised = true;
 
-		/*if (p1.mass <= p2.mass) p1.pos = p2.pos + vs::norm(p1.pos-p2.pos) * (p1.rad+p2.rad);
-		if (p2.mass <= p1.mass) p2.pos = p1.pos + vs::norm(p2.pos-p1.pos) * (p2.rad+p1.rad);
-		
 		vec v1 = p1.vel, v2 = p2.vel;
-		double m1 = p1.mass, m2 = p2.mass, 
-			   ang = vs::angle(p2.pos-p1.pos);
+		double m1 = p1.mass, m2 = p2.mass, ang = vs::angle(p2.pos-p1.pos);
 
+		// Move the particle 
+		vec dir = vs::norm(p1.pos-p2.pos) * (p1.rad+p2.rad);
+		if (m1 <= m2) p1.pos = p2.pos + dir;
+		else		  p2.pos = p1.pos - dir;
+		
+		// Reflexing the velocity
 		v1 = vs::rotate(v1, ang, true);
 		v2 = vs::rotate(v2, ang, true);
+		vec pre_v1 = v1;
 
-		vec v_total = v1 - v2;
-		v1.x = (v1.x*(m1-m2) + 2*m2*v2.x) / (m1+m2);
-		v2.x = v_total.x + v1.x;
+		v1.x -= (1+p1.bounciness) * m2 / (m1+m2) * (v1.x-v2.x);
+		v2.x -= (1+p2.bounciness) * m1 / (m1+m2) * (v2.x-pre_v1.x);
 		
-		p1.vel = vs::rotate(v1, ang, false) * p1.bounciness;
-		p2.vel = vs::rotate(v2, ang, false) * p2.bounciness;*/
+		p1.vel = vs::rotate(v1, ang, false);
+		p2.vel = vs::rotate(v2, ang, false);
 
 
-		vec dir = vs::norm(p1.pos - p2.pos);
-		double intersection = p1.rad + p2.rad - vs::dist(p1.pos, p2.pos);
+		//vec dir = vs::norm(p1.pos - p2.pos);
+		//double intersection = p1.rad + p2.rad - vs::dist(p1.pos, p2.pos);
 
 		// k ~ m * (v_max / x_max)^2
 		// m - mass of these most energetic particles
 		// E = (m * v^2) / 2
 		/*double e1 = p1.mass * pow(vs::length(p1.vel), 2),
 			   e2 = p2.mass * pow(vs::length(p2.vel), 2);
-		double m = (e1 > e2) ? p1.mass : p2.mass;*/
-		double k = min(p1.mass, p2.mass) * pow(v_max/x_max, 2) * 0.5;
+		double m = (e1 > e2) ? p1.mass : p2.mass;
+		double k = m * pow(v_max/x_max, 2) * 0.5;*/
+		//double k = min(p1.mass, p2.mass) * pow(v_max/x_max, 2) * 0.05;
 
 		// Fn = k*x
-		vec restoring_force = dir * intersection * k;
+		//vec restoring_force = dir * intersection * 10.;
 
-		p1.accel += restoring_force / p1.mass;
-		p2.accel -= restoring_force / p2.mass;
+		/*p1.accel += restoring_force / p1.mass;
+		p2.accel -= restoring_force / p2.mass;*/
+
+		/*double v1 = vs::length(p1.vel), v2 = vs::length(p2.vel),
+			   m1 = p1.mass, m2 = p2.mass, 
+			   k1 = p1.bounciness, k2 = p2.bounciness;
+
+		vec normal {-dir.y, dir.x};
+
+		p1.accel = 2.*(normal * vs::dot(normal, p1.vel) - p1.vel) * (double)FPS * intersection / 5.;
+		p2.accel = 2.*(normal * vs::dot(normal, p2.vel) - p2.vel) * (double)FPS * intersection / 5.;*/
 	}
 }

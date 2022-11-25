@@ -17,7 +17,7 @@ void Body::draw() {
 
 void Body::show_accels() {
 	ff::easy_line(pos, prev_pos, *window, Color::Cyan);
-	ff::easy_line(pos, pos + vel, *window, Color(0, 0, 255, 127));
-	ff::easy_line(pos, pos + accel, *window, Color(255, 0, 0, 127));
+	ff::easy_line(pos, pos + vel / (double)FPS * 10., *window, Color(0, 0, 255, 127));
+	ff::easy_line(pos, pos + accel / (double)FPS * 10., *window, Color(255, 0, 0, 127));
 	if (collised) ff::easy_circle(pos, rad/2, *window, Color::Red);
 }

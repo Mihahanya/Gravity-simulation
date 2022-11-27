@@ -11,7 +11,7 @@ namespace vs
     }
 
     inline double length(const vec& v) {
-        return dist(zero, v);
+        return sqrt(v.x*v.x + v.y*v.y);
     }
 
     inline double dot(const vec& a, const vec& b) {
@@ -19,7 +19,7 @@ namespace vs
     }
 
     inline vec norm(const vec& v) {
-        return v / dist(vs::zero, v);
+        return v / length(v);
     }
 
     inline vec reflect(const vec& rd, const vec& n) {

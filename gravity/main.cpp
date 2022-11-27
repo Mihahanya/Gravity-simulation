@@ -19,10 +19,10 @@ int main()
 
     vector<Body> bs;
     for (int i=0; i<500; i++) {
-        Body p(rand()%100 + 3e3, 0.4);
-        p.vel = vec(rand() % 1000 - 500, rand() % 1000 - 500)*0.5;
+        Body p(rand()%100 + 2e3, 0.02);
+        p.vel = vec(rand() % 1000 - 500, rand() % 1000 - 500)*0.1;
         p.pos = vec(rand()%W, rand()%H);
-        p.color = Color(rand()%256, rand()%256, rand()%256, 200); p.rad = 4;
+        p.color = Color(rand()%256, rand()%256, rand()%256, 200); p.rad = 2.5;
 
         bs.push_back(p);
     }
@@ -35,21 +35,21 @@ int main()
     p1.pos = vec(450-200, 460);
     p1.color = Color::Cyan; 
 
-    Body p2(1e4, 0.4);
-    p2.rad = 7;
+    Body p2(2e6, 0.01);
+    p2.rad = 15;
     //p2.vel = vec(-50, 0);
-    p2.vel = vec(-70, -80);
-    p2.pos = vec(450+200, 460);
+    p2.vel = vec(40, -50);
+    p2.pos = vec(W/2-500, H/2);
     p2.color = Color::Green; 
 
-    Body star(6e6); 
-    star.rad = 25;
-    //star.vel = vec(50, 0);
+    Body star(2e6, 0.01); 
+    star.rad = 15;
+    star.vel = vec(-30, 40);
     star.pos = vec(W/2, H/2);
     star.color = Color::Yellow;
 
     //scene.join_body(p1);
-    //scene.join_body(p2);
+    scene.join_body(p2);
     scene.join_body(star);
 
     //
@@ -59,9 +59,9 @@ int main()
 
     main_loop([&]
     {
-        float kinetic_energy = 0;
+        float system_energy = 0;
         for (auto& b : scene.planets) {
-            kinetic_energy += b->mass * pow(vs::length(b->vel), 2.) / 2.;
+            system_energy += b->mass * pow(vs::length(b->vel), 2.) / 2.; // kinetic energy
 
             // Bouncing form the borders of window
             if (b->pos.x < 0 or b->pos.x > W) { 
@@ -72,6 +72,11 @@ int main()
                 b->vel.y *= -1.; 
                 b->pos.y = max(min(b->pos.y, (double)H), 0.);
             }
+            
+            /*if (b->pos.x < 0) b->pos.x = W; 
+            if (b->pos.y < 0) b->pos.y = H; 
+            if (b->pos.x > W) b->pos.x = 0; 
+            if (b->pos.y > H) b->pos.y = 0;*/ 
 
             // Tail adding
             if (b->prev_pos != vs::zero) {
@@ -88,7 +93,7 @@ int main()
         if (Keyboard::isKeyPressed(Keyboard::W)) window.draw(Sprite(rt.getTexture()));
         if (Keyboard::isKeyPressed(Keyboard::Q)) scene.draw_accels();
         
-        printf("FPS: %.1f, \tkinetic energy: %.3f \r", 1./scene.delta_time, kinetic_energy);
+        printf("FPS: %.1f, \tkinetic energy: %.3f \r", 1./scene.delta_time, system_energy);
 
     }, scene);
 

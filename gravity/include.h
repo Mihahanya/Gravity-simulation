@@ -7,6 +7,7 @@
 using std::cout;
 using std::min;
 using std::pow;
+using std::sqrt;
 using std::max;
 using std::vector;
 

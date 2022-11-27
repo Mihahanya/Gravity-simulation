@@ -6,13 +6,15 @@ Connection::Connection(Body &p1, Body &p2) : p1{p1}, p2{p2} {}
 void Connection::calc_force() {
     if (vs::dist(p1.pos, p2.pos) < p1.rad + p2.rad) return;
 
-	vec dir = vs::norm(p1.pos - p2.pos);
-	double r = vs::dist(p1.pos, p2.pos);
+	// r = norm(p1-p2) * dist(p1, p2)^2  <=>  r = (p1-p2) / length(p1-p2)^3
+	vec dir = p1.pos - p2.pos;
+	//vec rd = vs::norm(dir) / pow(vs::dist(p1.pos, p2.pos), 2);
+	vec rd = dir / pow(vs::length(dir), 3);
 
 	// F = (m1 * m2) / r^2; F = m * a
 	// a1 = m2 / r^2; a2 = m1 / r^2
-	p1.accel -= dir * p2.mass / pow(r, 2);
-	p2.accel += dir * p1.mass / pow(r, 2);
+	p1.accel -= rd * p2.mass;
+	p2.accel += rd * p1.mass;
 }
 
 void Connection::do_collision() {
